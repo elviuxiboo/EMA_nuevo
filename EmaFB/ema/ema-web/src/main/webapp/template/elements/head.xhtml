@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body class="color">
+
+        <ui:composition>
+
+            <h:graphicImage style="width:50px; height: 50px; margin-left:25%; margin-top:5px; "  url="../resources/imagenes/borre.png" /> 
+
+
+            <div align="center" style="top:-10px; position:relative; margin-top:-60px;">
+                <h2><strong> EMA HTML-Editor</strong>  </h2>
+            </div>
+            <h:form>
+                <p:commandButton icon="ui-icon-contact" 
+                			     value="Cerrar Sesion" 
+                			     style="margin-right: 5px; 
+                			     position: fixed; 
+                			     right: 100px; 
+                			     margin-top:-20px; "   />
+            </h:form>
+
+            <h:form id="newProject">
+                <p:dialog header="Nuevo Proyecto" widgetVar="dnp" 
+                          showEffect="explode" hideEffect="bounce">
+
+                    <h:panelGrid columns="1" cellpadding="10">
+
+                        <h:outputLabel for="Project_name" value="Nombre del Proyecto *" />
+                        <p:inputText id="Project_name" 
+                        			 value="#{newProject.nombreProyecto}" 
+                        			 label="Nombre" 
+                        			 required="true"
+                        			 >
+                        			 
+                            <f:validateLength minimum="2"/>
+                        </p:inputText>
+
+                        <h:outputText value="Incluir Hoja de Estilo en Cascada" />
+                        <h:selectBooleanCheckbox label="estilo.css" value = "#{newProject.incluirCSS}"  />estilo.css
+
+                        <p:commandButton value="Aceptar" id="crear_proyecto_button" action="#{newProject.createProject}" />
+                    </h:panelGrid>
+                </p:dialog>   
+            </h:form>
+
+            <h:form id="html">
+                <p:dialog header="Nuevo HTML" widgetVar="dn_html" 
+                          showEffect="fold" hideEffect="fold">
+
+                    <h:panelGrid columns="1" cellpadding="10">
+
+                        <h:outputLabel for="Project_name" value="Nombre del Proyecto *" />
+                        <p:autoComplete id="force_proyect" 
+                        				forceSelection="true" 
+                        				dropdown="true"
+                                        value="#{htmlResource.nameProject}" 
+                                        completeMethod="#{htmlResource.complete}"/>
+
+                                        <h:outputText value="Nombre de tu recurso HTML" />
+                                        <p:inputText id="regex" 
+                                        			 required="true" 
+                                        			 value="#{htmlResource.nameResourceHTML}" > 
+                                        </p:inputText>  
+                          
+                        <p:commandButton value="Aceptar"  id="crear_html_boton" action="#{htmlResource.createHTML}"/>
+                    </h:panelGrid>
+                </p:dialog>   
+            </h:form>
+            
+            <h:form>
+                 <p:dialog header="Nuevo CSS" widgetVar="dn_css" 
+                          showEffect="fold" hideEffect="fold">
+
+                    <h:panelGrid columns="1" cellpadding="10">
+
+                        <h:outputLabel for="Project_name" value="Nombre del Proyecto *" />
+                        <p:autoComplete id="force_proyect" 
+                        				forceSelection="true" 
+                        				dropdown="true"
+                                        value="#{newResourceCSSBean.nameProject}"
+                                        completeMethod="#{newResourceCSSBean.complete}"/>
+
+                                        <h:outputText value="Nombre de tu recurso CSS" />
+                                        <p:inputText id="regex" 
+                                        			 required="true" 
+                                        			 value="#{newResourceCSSBean.nombre_css}" 
+                                                     validatorMessage="Value does not match pattern.">  
+                                              <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)" />  
+                                        </p:inputText>  
+                          
+                        <p:button value="Aceptar" id="crear_html_boton" />
+                    </h:panelGrid>
+                </p:dialog>   
+            </h:form>
+        </ui:composition>
+
+
+    </h:body>
+</html>
+
