@@ -49,7 +49,7 @@ public class HTMLResourceServiceimpl implements HTMLResourceService{
 	/*
 	 * Mostrar htmls de proyecto*/
 	  public List<HTMLResourceTO> showHTMLResources(ProjectsTO projectTO, UsersTO userTO){
-	  ResourceDAOhtml htmlDAO = new HTMLResourcesDAOimpl();
+	/*  ResourceDAOhtml htmlDAO = new HTMLResourcesDAOimpl();
 	  Users user = new Users();
 	  user.setUser(userTO.getUser());
 	  Projects project = new Projects();
@@ -65,8 +65,22 @@ public class HTMLResourceServiceimpl implements HTMLResourceService{
 	  	htmlTO.setDate(html.getDate());
 	  	listHTMLTO.add(htmlTO);
 	  	}
-	  return listHTMLTO;
+	  return listHTMLTO;*/
+		  ResourceDAOhtml htmlDAO = new HTMLResourcesDAOimpl();
+		  Users user = new Users();
+		  user.setUser(userTO.getUser());
+		  Projects project = new Projects();
+		  project.setName(projectTO.getName());
+		  List<HTMLResourceTO> listHtml = new ArrayList<HTMLResourceTO>();
+		  for(HTMLResources html : htmlDAO.showHTMLResourcesFromProject(project, user)){
+			  HTMLResourceTO htmlTO = new HTMLResourceTO();
+			  htmlTO.setName(html.getName());
+			  listHtml.add(htmlTO);
+		  }
+		  return listHtml;
 	  }
+		  
+		  
 	 
 
 /*	Actualizar html*/

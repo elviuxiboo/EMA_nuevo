@@ -47,23 +47,18 @@ public class CSSResourceServiceimpl implements CSSResourceService{
 	/*
 	 * Mostrar recursos css de proyecto*/
 	 public List<CSSResourceTO> showCSSResources(ProjectsTO projectTO, UsersTO userTO){
-	  ResourceDAOcss cssDAO = new CSSResourcesDAOimpl();
-	  Users user = new Users();
-	  user.setUser(userTO.getUser());
-	  Projects project = new Projects();
-	  project.setName(projectTO.getName());
-	  List<CSSResourceTO> listCSSTO = new ArrayList<CSSResourceTO>();
-	  List<CSSResources> listResources = new ArrayList<CSSResources>();
-	  CSSResourceTO cssTO = null;
-	  listResources = cssDAO.showCSSResourcesFromProject(project, user);
-	  	for(int i =0; i<listResources.size(); i++){
-	  	CSSResources css = listResources.get(i);
-	  	cssTO.setName(css.getName());
-	  	cssTO.setCode(css.getCode());
-	  	cssTO.setDate(css.getDate());
-	  	listCSSTO.add(cssTO);
-	  	}
-	  return listCSSTO;
+		 ResourceDAOcss cssDAO = new CSSResourcesDAOimpl();
+		 Users user = new Users();
+		 user.setUser(userTO.getUser());
+		 Projects project = new Projects();
+		 project.setName(projectTO.getName());
+		 List<CSSResourceTO> listCss = new ArrayList<CSSResourceTO>();
+		 for(CSSResources css: cssDAO.showCSSResourcesFromProject(project, user)){
+			 CSSResourceTO cssTO = new CSSResourceTO();
+			 cssTO.setName(css.getName());
+			 listCss.add(cssTO);
+		 }
+		 return listCss;
 	  }
 
 	
