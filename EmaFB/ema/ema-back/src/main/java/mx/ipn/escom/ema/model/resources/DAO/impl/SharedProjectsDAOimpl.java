@@ -30,7 +30,7 @@ public class SharedProjectsDAOimpl implements SharedProjectsDAO{
 		Projects projectResult = (Projects) q.getSingleResult();	
 		Long idProject = projectResult.getId();
 		Key userId = userResult.getId();
-		//SharedResources sharedResource = new SharedResources();
+	//	SharedResources sharedResource = new SharedResources();
 		try{
 			sharedResource.setProject(idProject);
 			sharedResource.setUserSharingProject(userId);
@@ -46,11 +46,13 @@ public class SharedProjectsDAOimpl implements SharedProjectsDAO{
 		q.setParameter("user", user.getUser());
 		Users userResult = (Users) q.getSingleResult();
 		List<Key> sharedResourcesofUser = userResult.getSharedProjects();
+		System.out.println(sharedResourcesofUser);
 		List<SharedProjects> listSharedResources = new ArrayList<SharedProjects>();
 		for(int i=0; i<sharedResourcesofUser.size(); i++){
 			Key sharedResourceKey = sharedResourcesofUser.get(i);
 			SharedProjects sharedResource = em.find(SharedProjects.class, sharedResourceKey);
 			listSharedResources.add(sharedResource);
+			System.out.println(listSharedResources);
 		}
 		return listSharedResources;
 	}
@@ -65,10 +67,23 @@ public class SharedProjectsDAOimpl implements SharedProjectsDAO{
 			Query q = em.createQuery("select e from Projects e where id = :id");
 			q.setParameter("id", projectKey);
 			Projects project = (Projects) q.getSingleResult();
+			System.out.println(project);
 			projectsList.add(project);
+			System.out.println(projectsList);
 		}
 		return projectsList;
 	}
+	
+	public Users returnUser(Users user) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select e from Users e where user = :user");
+		q.setParameter("user", user.getUser());
+		Users userResult = (Users) q.getSingleResult();
+		return userResult;
+
+		
+	}
+	
 
 	public void addUsersReceivers(Users userReceiver,
 			SharedProjects sharedResource) {
@@ -103,22 +118,9 @@ public class SharedProjectsDAOimpl implements SharedProjectsDAO{
 		
 	}
 
-	public Projects returnProject(Users user) {
-		ProjectsDAOimpl pdi = new ProjectsDAOimpl();
-		List<Projects> listProjects = showProjects(user);
-		Projects result = new Projects();
-		for(int i =0; i<listProjects.size(); i++){
-			Projects projectResult = listProjects.get(i);
-			System.out.println(projectResult.getId());
-			Key userKey = projectResult.getUser();
-			Users userProject = new Users();
-			EntityManager em = EMFService.get().createEntityManager();
-			userProject = em.find(Users.class, userKey);
-			result = pdi.findProject(projectResult, userProject);
-		}
-		return result;
-	}
 	
+
+
 	
 
 }

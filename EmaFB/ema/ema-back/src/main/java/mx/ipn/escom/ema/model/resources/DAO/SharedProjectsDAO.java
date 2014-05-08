@@ -13,6 +13,6 @@ public interface SharedProjectsDAO {
 	public List<Projects> showProjects(Users user);
 	public void addUsersReceivers(Users userReceiver, SharedProjects sharedResource);
 	public void addReferenceOfProjectReceived(SharedProjects sharedResource, Users user);
-	public Projects returnProject(Users user);
+	public Users returnUser(Users user);
 
 }

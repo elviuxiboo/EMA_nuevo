@@ -13,5 +13,8 @@ public interface ShareProjectsService {
 	
 	/*Mostrar proyectos compartidos*/
 	  public List<ProjectsTO> showSharedProjects(UsersTO userTO);
+	  
+	  /*Mostrar usuario del proyecto*/
+	  public UsersTO getUserOfProject(ProjectsTO projectTO);
 	 
 }

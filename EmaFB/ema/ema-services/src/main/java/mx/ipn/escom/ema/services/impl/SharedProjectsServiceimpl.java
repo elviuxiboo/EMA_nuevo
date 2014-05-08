@@ -47,25 +47,32 @@ public class SharedProjectsServiceimpl implements ShareProjectsService{
 	  Users user = new Users();
 	  user.setUser(userTO.getUser());
 	  Projects projectResult = new Projects();
-      ProjectsTO projectTO = null;
 	  List<ProjectsTO> listSharedProjectTO = new ArrayList<ProjectsTO>(); 
 	  SharedProjectsDAO sharedProjectsDAO = new SharedProjectsDAOimpl();
 	  List<Projects> list = sharedProjectsDAO.showProjects(user);
-	  List<CSSResourceTO> cssList = new ArrayList<CSSResourceTO>();
-	  List<HTMLResourceTO> htmlList = new ArrayList<HTMLResourceTO>();
-	  CSSResourceService cssService = new CSSResourceServiceimpl();
-	  HTMLResourceService htmlService = new HTMLResourceServiceimpl();
-	  for(int i=0; i< list.size(); i++){
-	   	 Projects sharedProject = list.get(i);
-	   	 projectTO.setName(sharedProject.getName());
-	   	 projectTO.setUser(userTO);
-	   	 cssList = cssService.showCSSResources(projectTO, userTO);
-	   	 htmlList = htmlService.showHTMLResources(projectTO, userTO);
-	   	 projectTO.setCss(cssList);
-	   	 projectTO.setHtml(htmlList);
-	   	 listSharedProjectTO.add(projectTO);
-	   }
+	  for(Projects projects: sharedProjectsDAO.showProjects(user)){
+		  ProjectsTO projectTO = new ProjectsTO();
+		  projectTO.setName(projects.getName());
+		  projectTO.setUser(userTO);
+		  listSharedProjectTO.add(projectTO);
+		  System.out.println("lista en servicio " + listSharedProjectTO);
+	  }
 	  return listSharedProjectTO;
 	  }
+
+	  /*Mostrar usuario que compartio el proyecto*/
+	public UsersTO getUserOfProject(ProjectsTO projectTO) {
+		SharedProjectsDAO sharedProjectsDAO = new SharedProjectsDAOimpl();
+		//Projects project = new Projects();
+		UsersTO userTO = new UsersTO();
+		userTO = projectTO.getUser();
+		System.out.println("Usuario en el servicio" +userTO.getUser());
+		Users user = new Users();
+		user.setUser(userTO.getUser());
+		user = sharedProjectsDAO.returnUser(user);
+		UsersTO userResultTO = new UsersTO();
+		userResultTO.setUser(user.getUser());
+		return userResultTO;
+	}
 
 }
