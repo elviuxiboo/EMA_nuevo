@@ -7,46 +7,21 @@
       >
     <h:head>
         <title>Facelet Title</title>
-        <script type="text/javascript">  
-    function handleLoginRequest(xhr, status, args) {  
-        if(args.validationFailed || !args.loggedIn) {  
-            PF('dlg').jq.effect("shake", { times:5 }, 100);  
-        }   
-        else {  
-            PF('dlg').hide();  
-            $('#loginLink').fadeOut();  
-        }  
-    }  
-</script>  
+    	
+    
     </h:head>
     <h:body>
-    <h:form id="form">  
-    <h:outputLink id="loginLink" value="javascript:void(0)" onclick="PF('dlg').show()" title="login">   
-        <p:graphicImage value="resources/imagenes/borre.png" />  
-    </h:outputLink>  
-  
-    <p:growl id="growl" showDetail="true" life="3000" />  
-  
-    <p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false">  
-  
-        <h:panelGrid columns="2" cellpadding="5">  
-            <h:outputLabel for="username" value="Username:" />  
-            <p:inputText value="#{loginBean.username}"   
-                    id="username" required="true" label="username" />  
-              
-            <h:outputLabel for="password" value="Password:" />  
-            <h:inputSecret value="#{loginBean.password}"   
-                    id="password" required="true" label="password" />  
-              
-            <f:facet name="footer">  
-                <p:commandButton id="loginButton" value="Login" update="growl"   
-                    actionListener="#{loginBean.login}" />  
-            </f:facet>  
-        </h:panelGrid>  
-          
-    </p:dialog>  
-</h:form>  
- 
+			
+		<h1>hola</h1>
+		
+		<h:form id ="textHtml">
+		<p:inputTextarea id="textAreaHtml" rows="10" 
+						 cols="50" 
+						 value= "#{autocompleteBean.etiqueta}"
+						 completeMethod="#{autocompleteBean.completeArea}" 
+						 minQueryLength="0" />
+		</h:form>	 
+		
+		
     </h:body>
 </html>
-

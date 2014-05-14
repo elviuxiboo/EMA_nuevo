@@ -14,7 +14,7 @@ import mx.ipn.escom.ema.to.TagsTO;
 public class TagsServiceImpl implements TagsService{
 
 	public List<TagsTO> getAllTags() {
-		List<Tags> listTags = new ArrayList<Tags>();
+	/*	List<Tags> listTags = new ArrayList<Tags>();
 		List<TagsTO> listTagsTO = new ArrayList<TagsTO>();
 		TagsDAO tagsDAO = new TagsDAOimpl();
 		TagsTO tagTO = new TagsTO();
@@ -24,8 +24,15 @@ public class TagsServiceImpl implements TagsService{
 			tagTO.setName(tag.getName());
 			tagTO.setDescription(tag.getDescription());
 			listTagsTO.add(tagTO);
+		}*/
+		TagsDAO tagsDAO = new TagsDAOimpl();
+		List<TagsTO> listTags = new ArrayList<TagsTO>();
+		for(Tags tag : tagsDAO.getTags()){
+			TagsTO tagTO = new TagsTO();
+			tagTO.setName(tag.getName());
+			listTags.add(tagTO);
 		}
-		return listTagsTO;
+		return listTags;
 	}
 
 	public List<AttributesTO> getAttributesofTag(TagsTO tagTO) {
