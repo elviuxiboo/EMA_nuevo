@@ -23,11 +23,12 @@
                         var="node"
                         selectionMode="single"
                         selection="#{treeBean.selectedNode}"
+                        dynamic = "true"
                         >
                     <p:ajax event="select"  listener="#{treeBean.onNodeSelect}" />
                     <p:ajax event="expand" listener="#{treeBean.onNodeExpand}" />
                     <p:ajax event="collapse" listener="#{treeBean.onNodeCollapse}" />
-                    <p:treeNode type="node"
+                    <p:treeNode type="default"
                                 expandedIcon="../resources/imagenes/folder-open"
                                 collapsedIcon="../resources/imagenes/folder-collapsed">
                         <h:outputText value="#{node}"/>

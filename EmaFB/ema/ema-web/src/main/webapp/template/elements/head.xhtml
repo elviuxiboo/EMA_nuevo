@@ -25,7 +25,7 @@
                 			     style="margin-right: 5px; 
                 			     position: fixed; 
                 			     right: 100px; 
-                			     margin-top:-20px; "   />
+                			     margin-top:-60px; "   />
             </h:form>
 
             <h:form id="newProject">
@@ -71,7 +71,10 @@
                                         			 value="#{htmlResource.nameResourceHTML}" > 
                                         </p:inputText>  
                           
-                        <p:commandButton value="Aceptar"  id="crear_html_boton" action="#{htmlResource.createHTML}"/>
+                        <p:commandButton value="Aceptar"  
+                        				 id="crear_html_boton" 
+                        				 action="#{htmlResource.createHTML}"
+                        				  />
                     </h:panelGrid>
                 </p:dialog>   
             </h:form>

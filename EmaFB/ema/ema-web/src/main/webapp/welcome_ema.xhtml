@@ -36,7 +36,7 @@
              
 
                 <p:layoutUnit id="top" position="north" size="80">
-                      <h:graphicImage style="width:50px; height: 50px; margin-left:25%; margin-top:5px; "  url="../resources/imagenes/borre.png" /> 
+             <!--h:graphicImage style="width:50px; height: 50px; margin-left:25%; margin-top:5px; "  url="../resources/imagenes/borre.png" /> 
 
 
             <div align="center" style="top:-10px; position:relative; margin-top:-60px;">
@@ -44,8 +44,11 @@
             </div>
             <h:form>
                 <p:commandButton icon="ui-icon-contact" value="Inicia Sesion" style="margin-right: 5px; position: fixed; right: 100px; margin-top: -60px; "   />
-            </h:form>
-                    
+            </h:form-->
+					<ui:insert name="top">
+						<ui:include src="/template/elements/head.xhtml"/>
+					</ui:insert>
+                     
                 </p:layoutUnit>
 
                 <p:layoutUnit id="bottom" position="south" size="60">

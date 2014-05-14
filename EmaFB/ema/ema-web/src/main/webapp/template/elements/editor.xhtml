@@ -12,8 +12,8 @@
     </h:head>
     <h:body>
 			
-		<h1>hola</h1>
 		
+		<ui:composition>
 		<h:form id ="textHtml">
 		<p:inputTextarea id="textAreaHtml" rows="10" 
 						 cols="50" 
@@ -21,7 +21,7 @@
 						 completeMethod="#{autocompleteBean.completeArea}" 
 						 minQueryLength="0" />
 		</h:form>	 
-		
+		</ui:composition>
 		
     </h:body>
 </html>

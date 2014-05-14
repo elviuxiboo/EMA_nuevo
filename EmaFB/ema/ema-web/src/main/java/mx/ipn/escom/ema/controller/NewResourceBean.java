@@ -103,6 +103,7 @@ public class NewResourceBean implements Serializable {
     }
     
     public HTMLResourceTO createHTML(){
+        String url = "/faces/view/New_Resource_HTML.xhtml";
     	System.out.println("metodo");
     	FacesContext context = FacesContext.getCurrentInstance();
     	UserService userService = UserServiceFactory.getUserService();
